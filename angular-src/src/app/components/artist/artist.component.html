@@ -61,17 +61,16 @@
       </ul>
     </div>
   </div>
-  <div *ngIf="pagination
-" class="row">
+  <div  class="row">
     <div class="col-ms-4 col-sm-offset-4">
       <ul class="pagination">
-        <li [class.disabled]="!pageLeft" (click)="paginationBack()"><a>&laquo;</a></li>
+        <li [class.hide]="!pageLeft" (click)="paginationBack()"><a>&laquo;</a></li>
         <li><a>{{pageCount}}</a></li>
-        <li [class.disabled]="pageRight" (click)="paginationForward()">
+        <li [class.hide]="pageRight" (click)="paginationForward()">
           <a>&raquo;</a>
         </li>
       </ul>
-      <p>{{pagination.count}} records found</p>
+      <p >{{pagi.count}} Records</p>
     </div>
   </div>
 </div>
