@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+      <aside id="sidebar">
+        <form (submit)="searchForm()">
+          <h3>Search Artist</h3>
+          <p>Search by name</p>
+          <input [(ngModel)]="search" type="search" name="search" id="input" value="" required="required" title="">
+          <div>
+            <h6>Age</h6>
+            <input [(ngModel)]="ageMin" name="ageMin" type="number" id="qty" min="0" max="100" step="1" placeholder="min" />
+            <input [(ngModel)]="ageMax" name="ageMax" type="number" id="qty" min="0" max="100" step="1" placeholder="max" />
+          </div>
+          <div>
+            <h6>Years of active</h6>
+            <input [(ngModel)]="activeYears" type="number" name="activeYears" id="input" value="" min="0" max="100" step="1" required="required">
+          </div>
+          <div>
+            <h6>Gender</h6>
+            <div class="radio">
+              <label>
+                <input [(ngModel)]="gender" type="radio" name="gender" id="input" value="male"> Male
+              </label>
+              <label>
+                <input [(ngModel)]="gender" type="radio" name="gender" id="input" value="female"> Female
+              </label>
+            </div>
+          </div>
+          <div>
+            <h5>Sort By</h5>
+            <select [(ngModel)]="sort" name="sort" id="input" class="form-control" required="required">
+              <option value="name">Name</option>
+              <option value="age">Age</option>
+              <option value="yearsActive">Years Active</option>
+            </select>
+          </div>
+          <br>
+          <button type="submit" class="btn btn-success btn-block">Search</button>
+        </form>
+      </aside>
+    </div>
+    <div class="col-sm-6 col-sm-offset-right-3">
+      <ul class="list-group">
+        <li *ngFor=" let artist of artists" class="list-group-item">
+          <div class="row">
+            <div class="col-sm-3">
+              <img [src]="artist.image" alt="" class="img-thumbnail img-responsive">
+            </div>
+            <div class="col-sm-9">
+              <h4>{{artist.name}} </h4>
+              <span><i>genre:</i> {{artist.genre}} </span>
+              <br>
+              <b><small>Age: {{artist.age}} </small></b>
+              <br>
+              <span>Albums: {{artist.albums.length}}</span>
+              <br>
+              <span>Years Of Active: {{artist.yearsActive}}</span>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div *ngIf="pagination
+" class="row">
+    <div class="col-ms-4 col-sm-offset-4">
+      <ul class="pagination">
+        <li [class.disabled]="!pageLeft" (click)="paginationBack()"><a>&laquo;</a></li>
+        <li><a>{{pageCount}}</a></li>
+        <li [class.disabled]="pageRight" (click)="paginationForward()">
+          <a>&raquo;</a>
+        </li>
+      </ul>
+      <p>{{pagination.count}} records found</p>
+    </div>
+  </div>
+</div>
